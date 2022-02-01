@@ -9,7 +9,7 @@ public class AnswerDto {
     private String message;
     private String messageType;
     private Boolean isAccepted;
-    private Timestamp postedOn;
+    private Long postedOn;
 
     public String getId() {
         return id;
@@ -59,11 +59,11 @@ public class AnswerDto {
         isAccepted = accepted;
     }
 
-    public Timestamp getPostedOn() {
+    public Long getPostedOn() {
         return postedOn;
     }
 
-    public void setPostedOn(Timestamp postedOn) {
+    public void setPostedOn(Long postedOn) {
         this.postedOn = postedOn;
     }
 }

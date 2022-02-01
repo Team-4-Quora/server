@@ -6,6 +6,15 @@ public class ReactionDto {
     private String reactionBy;
     private Boolean isLike;
     private String answerId;
+    private Long reactedOn;
+
+    public Long getReactedOn() {
+        return reactedOn;
+    }
+
+    public void setReactedOn(Long reactedOn) {
+        this.reactedOn = reactedOn;
+    }
 
     public String getId() {
         return id;

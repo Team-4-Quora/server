@@ -14,7 +14,7 @@ public class Question {
     @NotNull
     private String questionBy;
     @NotNull
-    private Timestamp postedOn;
+    private Long postedOn;
     @NotNull
     private String text;
     private String shareableLink;
@@ -47,11 +47,11 @@ public class Question {
         this.questionBy = questionBy;
     }
 
-    public Timestamp getPostedOn() {
+    public Long getPostedOn() {
         return postedOn;
     }
 
-    public void setPostedOn(Timestamp postedOn) {
+    public void setPostedOn(Long postedOn) {
         this.postedOn = postedOn;
     }
 

@@ -6,7 +6,7 @@ public class QuestionDto {
     private String id;
     private String orgId;
     private String questionBy;
-    private Timestamp postedOn;
+    private Long postedOn;
     private String text;
     private String shareableLink;
     private Boolean isThreadClosed;
@@ -38,11 +38,11 @@ public class QuestionDto {
         this.questionBy = questionBy;
     }
 
-    public Timestamp getPostedOn() {
+    public Long getPostedOn() {
         return postedOn;
     }
 
-    public void setPostedOn(Timestamp postedOn) {
+    public void setPostedOn(Long postedOn) {
         this.postedOn = postedOn;
     }
 

@@ -15,7 +15,7 @@ public class Comment {
     @NotNull
     private String message;
     @NotNull
-    private Timestamp postedOn;
+    private Long postedOn;
     @NotNull
     private String commentBy;
 
@@ -51,11 +51,11 @@ public class Comment {
         this.message = message;
     }
 
-    public Timestamp getPostedOn() {
+    public Long getPostedOn() {
         return postedOn;
     }
 
-    public void setPostedOn(Timestamp postedOn) {
+    public void setPostedOn(Long postedOn) {
         this.postedOn = postedOn;
     }
 }

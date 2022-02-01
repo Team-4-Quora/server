@@ -32,6 +32,7 @@ public class QuestionServiceImpl implements QuestionService {
     public void setAcceptedAnswer(String id,String answerId) {
         Question question=findById(id);
         question.setAcceptedAnswer(answerId);
+        answerService.setAnswerAccepted(answerId);
         save(question);
     }
 

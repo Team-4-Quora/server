@@ -1,9 +1,42 @@
 package com.example.qna.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.qna.dto.CommentDto;
+import com.example.qna.entity.Comment;
+import com.example.qna.service.CommentService;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/qna/comment")
 public class CommentController {
+    @Autowired
+    private CommentService commentService;
+
+    @GetMapping("/fetch/{id}")
+    List<CommentDto> fetchByAnswerId(@PathVariable(value = "id") String id){
+        List<Comment> comments=commentService.findByAnswerId(id);
+        List<CommentDto> commentDtos=new ArrayList<>();
+        for(Comment comment:comments){
+            CommentDto commentDto=new CommentDto();
+            BeanUtils.copyProperties(comment,commentDto);
+            commentDtos.add(commentDto);
+        }
+        return commentDtos;
+    }
+    @PostMapping("/delete/{id}")
+    void deletebyId(@PathVariable(value = "id")String id){
+        commentService.deleteById(id);
+    }
+    @PostMapping("/add")
+    void save(@RequestBody CommentDto commentDto){
+        Comment comment=new Comment();
+        BeanUtils.copyProperties(commentDto,comment);
+        comment.setPostedOn(Instant.now().getEpochSecond());
+        commentService.save(comment);
+    }
 }

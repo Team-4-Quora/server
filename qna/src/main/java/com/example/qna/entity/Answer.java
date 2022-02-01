@@ -19,7 +19,7 @@ public class Answer {
     private String messageType;
     private Boolean isAccepted;
     @NotNull
-    private Timestamp postedOn;
+    private Long postedOn;
 
     public String getId() {
         return id;
@@ -69,11 +69,11 @@ public class Answer {
         isAccepted = accepted;
     }
 
-    public Timestamp getPostedOn() {
+    public Long getPostedOn() {
         return postedOn;
     }
 
-    public void setPostedOn(Timestamp postedOn) {
+    public void setPostedOn(Long postedOn) {
         this.postedOn = postedOn;
     }
 }

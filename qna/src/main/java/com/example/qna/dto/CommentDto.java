@@ -6,7 +6,7 @@ public class CommentDto {
     private String id;
     private String answerId;
     private String message;
-    private Timestamp postedOn;
+    private Long postedOn;
     private String commentBy;
 
     public String getCommentBy() {
@@ -41,11 +41,11 @@ public class CommentDto {
         this.message = message;
     }
 
-    public Timestamp getPostedOn() {
+    public Long getPostedOn() {
         return postedOn;
     }
 
-    public void setPostedOn(Timestamp postedOn) {
+    public void setPostedOn(Long postedOn) {
         this.postedOn = postedOn;
     }
 }
