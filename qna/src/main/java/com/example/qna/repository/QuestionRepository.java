@@ -10,4 +10,5 @@ import java.util.List;
 public interface QuestionRepository extends MongoRepository<Question,String> {
     List<Question> findByCategory(String category);
     List<Question> findByQuestionBy(String email);
+    List<Question> findByOrgId(String orgId);
 }

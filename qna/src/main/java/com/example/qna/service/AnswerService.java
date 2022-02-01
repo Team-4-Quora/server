@@ -8,5 +8,6 @@ public interface AnswerService {
     void save(Answer answer);
     void delete(String id);
     List<Answer> findByQuestionId(String id);
-
+    void setAnswerAccepted(String id);
+    Answer findById(String id);
 }

@@ -24,13 +24,24 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public List<Question> findByCategory(String category) {
-        return questionRepository.findByCategory(category);
+    public Question findById(String id) {
+        return questionRepository.findById(id).get();
     }
 
     @Override
-    public List<Question> findByQuestionBy(String email) {
-        return questionRepository.findByQuestionBy(email);
+    public void setAcceptedAnswer(String id,String answerId) {
+        Question question=findById(id);
+        question.setAcceptedAnswer(answerId);
+        save(question);
     }
 
+    @Override
+    public List<Question> findByValue(String type, String value) {
+        switch (value){
+            case "category":        return questionRepository.findByCategory(value);
+            case "questionBy":        return questionRepository.findByQuestionBy(value);
+            case "orgId":        return questionRepository.findByOrgId(value);
+            default: return null;
+        }
+    }
 }
