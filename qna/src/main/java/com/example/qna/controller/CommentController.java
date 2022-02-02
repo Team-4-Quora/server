@@ -32,6 +32,7 @@ public class CommentController {
     void deletebyId(@PathVariable(value = "id")String id){
         commentService.deleteById(id);
     }
+
     @PostMapping("/add")
     void save(@RequestBody CommentDto commentDto){
         Comment comment=new Comment();

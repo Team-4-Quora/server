@@ -1,10 +1,13 @@
 package com.example.qna.service.impl;
 
 import com.example.qna.entity.Answer;
+import com.example.qna.entity.Question;
 import com.example.qna.entity.Reaction;
 import com.example.qna.repository.AnswerRepository;
+import com.example.qna.repository.QuestionRepository;
 import com.example.qna.service.AnswerService;
 import com.example.qna.service.CommentService;
+import com.example.qna.service.QuestionService;
 import com.example.qna.service.ReactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +23,8 @@ public class AnswerServiceImpl implements AnswerService {
     private ReactionService reactionService;
     @Autowired
     private CommentService commentService;
+    @Autowired
+    private QuestionRepository questionRepository;
 
     @Override
     public void save(Answer answer) {
@@ -29,9 +34,13 @@ public class AnswerServiceImpl implements AnswerService {
     @Override
     public void delete(String id) {
         Answer answer=findById(id);
-        Reaction reaction=reactionService.findByAnswerIdAndAnswerBy(id,answer.getAnswerBy());
+        Reaction reaction=reactionService.findByAnswerIdAndReactionBy(id,answer.getAnswerBy());
         reactionService.delete(reaction.getId());
         commentService.deleteByAnswerId(answer.getId());
+        Question question=questionRepository.findById(answer.getQuestionId()).get();
+        if(question.getAcceptedAnswer().equals(answer.getId()))
+            question.setAcceptedAnswer(null);
+            questionRepository.save(question);
         answerRepository.delete(answer);
     }
 

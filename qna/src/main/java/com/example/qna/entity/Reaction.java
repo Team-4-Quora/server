@@ -14,7 +14,6 @@ public class Reaction {
     @NotNull
     private Boolean isLike;
     private String answerId;
-    @NotNull
     private Long reactedOn;
 
     public String getId() {

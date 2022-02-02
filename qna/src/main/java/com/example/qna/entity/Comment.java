@@ -16,7 +16,6 @@ public class Comment {
     private String message;
     @NotNull
     private Long postedOn;
-    @NotNull
     private String commentBy;
 
     public String getCommentBy() {

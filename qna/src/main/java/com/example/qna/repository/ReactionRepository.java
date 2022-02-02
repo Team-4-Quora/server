@@ -10,7 +10,7 @@ import java.util.List;
 public interface ReactionRepository extends MongoRepository<Reaction,String> {
     List<Reaction> findByQuestionId(String id);
     List<Reaction> findByAnswerId(String id);
-    Reaction findByQuestionIdAndQuestionBy(String id,String email);
-    Reaction findByAnswerIdAndAnswerBy(String id,String email);
+    Reaction findByQuestionIdAndReactionBy(String id,String email);
+    Reaction findByAnswerIdAndReactionBy(String id,String email);
 
 }

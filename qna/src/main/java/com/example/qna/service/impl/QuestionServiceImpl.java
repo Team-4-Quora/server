@@ -38,8 +38,8 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public List<Question> findByValue(String type, String value) {
-        switch (value){
-            case "category":        return questionRepository.findByCategory(value);
+        switch (type){
+            case "category": return questionRepository.findByCategory(value);
             case "questionBy":        return questionRepository.findByQuestionBy(value);
             case "orgId":        return questionRepository.findByOrgId(value);
             default: return null;

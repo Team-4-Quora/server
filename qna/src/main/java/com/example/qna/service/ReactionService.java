@@ -7,8 +7,8 @@ import java.util.List;
 public interface ReactionService {
     List<Reaction> findByQuestionId(String id);
     List<Reaction> findByAnswerId(String id);
-    Reaction findByQuestionIdAndQuestionBy(String id,String email);
-    Reaction findByAnswerIdAndAnswerBy(String id,String email);
+    Reaction findByQuestionIdAndReactionBy(String id,String email);
+    Reaction findByAnswerIdAndReactionBy(String id,String email);
     void delete(String id);
     void save(Reaction reaction);
 }

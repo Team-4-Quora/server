@@ -29,9 +29,9 @@ public class QuestionController {
     @GetMapping("/fetch/{type}/{value}")
     List<QuestionDto> fetchByValue(@PathVariable(value = "type") String type, @PathVariable(value="value") String value){
         List<Question> questions=questionService.findByValue(type,value);
-        List<QuestionDto> result=new ArrayList<>();
+        List<QuestionDto> result = new ArrayList<>();
         for(Question question: questions){
-            QuestionDto questionDto=new QuestionDto();
+            QuestionDto questionDto = new QuestionDto();
             BeanUtils.copyProperties(question,questionDto);
             result.add(questionDto);
         }
@@ -39,7 +39,7 @@ public class QuestionController {
     }
 
     @PostMapping("/accepted/{id}/{ansId}")
-    void setAcceptedAnswer(@PathVariable(value = "id") String id,@PathVariable(value = "ansId")String ansId){
+    void setAcceptedAnswer(@PathVariable(value = "id") String id, @PathVariable(value = "ansId")String ansId){
         questionService.setAcceptedAnswer(id,ansId);
     }
 }

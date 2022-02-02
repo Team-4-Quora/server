@@ -7,8 +7,7 @@ public class AnswerDto {
     private String questionId;
     private String answerBy;
     private String message;
-    private String messageType;
-    private Boolean isAccepted;
+    private Boolean isAccepted=false;
     private Long postedOn;
 
     public String getId() {
@@ -43,13 +42,6 @@ public class AnswerDto {
         this.message = message;
     }
 
-    public String getMessageType() {
-        return messageType;
-    }
-
-    public void setMessageType(String messageType) {
-        this.messageType = messageType;
-    }
 
     public Boolean getAccepted() {
         return isAccepted;

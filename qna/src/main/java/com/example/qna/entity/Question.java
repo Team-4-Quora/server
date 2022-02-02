@@ -13,7 +13,6 @@ public class Question {
     private String orgId;
     @NotNull
     private String questionBy;
-    @NotNull
     private Long postedOn;
     @NotNull
     private String text;

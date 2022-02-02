@@ -30,6 +30,7 @@ public class AnswerController {
     void delete(@PathVariable(value = "id") String id){
         answerService.delete(id);
     }
+
     @GetMapping("/fetch/{id}")
     List<AnswerDto> fetchByQuestionId(@PathVariable(value = "id") String id){
         List<Answer> answers=answerService.findByQuestionId(id);

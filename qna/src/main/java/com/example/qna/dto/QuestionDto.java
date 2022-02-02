@@ -1,6 +1,5 @@
 package com.example.qna.dto;
 
-import java.sql.Timestamp;
 
 public class QuestionDto {
     private String id;
@@ -9,10 +8,10 @@ public class QuestionDto {
     private Long postedOn;
     private String text;
     private String shareableLink;
-    private Boolean isThreadClosed;
+    private Boolean isThreadClosed=false;
     private String category;
     private String acceptedAnswer;
-    private Boolean isModerated;
+    private Boolean isModerated=false;
 
     public String getId() {
         return id;

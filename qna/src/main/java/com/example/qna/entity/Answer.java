@@ -16,9 +16,7 @@ public class Answer {
     private String answerBy;
     @NotNull
     private String message;
-    private String messageType;
     private Boolean isAccepted;
-    @NotNull
     private Long postedOn;
 
     public String getId() {
@@ -53,13 +51,6 @@ public class Answer {
         this.message = message;
     }
 
-    public String getMessageType() {
-        return messageType;
-    }
-
-    public void setMessageType(String messageType) {
-        this.messageType = messageType;
-    }
 
     public Boolean getAccepted() {
         return isAccepted;

@@ -15,8 +15,8 @@ public class ReactionServiceImpl implements ReactionService {
 
     @Override
     public void save(Reaction reaction) {
-        Reaction answer=findByAnswerIdAndAnswerBy(reaction.getAnswerId(),reaction.getReactionBy());
-        Reaction question =findByQuestionIdAndQuestionBy(reaction.getQuestionId(),reaction.getReactionBy());
+        Reaction answer=findByAnswerIdAndReactionBy(reaction.getAnswerId(),reaction.getReactionBy());
+        Reaction question =findByQuestionIdAndReactionBy(reaction.getQuestionId(),reaction.getReactionBy());
         if(answer==null || question==null){
             reactionRepository.save(reaction);
         }
@@ -48,12 +48,12 @@ public class ReactionServiceImpl implements ReactionService {
     }
 
     @Override
-    public Reaction findByQuestionIdAndQuestionBy(String id, String email) {
-        return reactionRepository.findByQuestionIdAndQuestionBy(id,email);
+    public Reaction findByQuestionIdAndReactionBy(String id, String email) {
+        return reactionRepository.findByQuestionIdAndReactionBy(id,email);
     }
 
     @Override
-    public Reaction findByAnswerIdAndAnswerBy(String id, String email) {
-        return reactionRepository.findByAnswerIdAndAnswerBy(id,email);
+    public Reaction findByAnswerIdAndReactionBy(String id, String email) {
+        return reactionRepository.findByAnswerIdAndReactionBy(id,email);
     }
 }
