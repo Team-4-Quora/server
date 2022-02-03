@@ -19,7 +19,7 @@ public class QuestionController {
     private QuestionService questionService;
 
     @PostMapping("/add")
-    void save(@RequestBody QuestionDto questionDto){
+    void saveques(@RequestBody QuestionDto questionDto){
         Question question=new Question();
         BeanUtils.copyProperties(questionDto,question);
         question.setPostedOn(Instant.now().getEpochSecond());
