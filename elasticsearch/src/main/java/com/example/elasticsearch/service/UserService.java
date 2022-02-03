@@ -34,8 +34,8 @@ public class UserService {
     }
 
 
-    public List<User> search(String query) {
-        return repository.search(query);
+    public List<User> searchUser(String query) {
+        return repository.searchUser(query);
     }
 
 }

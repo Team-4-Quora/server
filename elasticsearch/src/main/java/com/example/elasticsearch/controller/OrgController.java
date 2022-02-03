@@ -1,9 +1,8 @@
 package com.example.elasticsearch.controller;
 
-
-import com.example.elasticsearch.document.User;
-import com.example.elasticsearch.dto.UserDto;
-import com.example.elasticsearch.service.UserService;
+import com.example.elasticsearch.document.Organisation;
+import com.example.elasticsearch.dto.OrganisationDto;
+import com.example.elasticsearch.service.OrganisationService;
 import net.minidev.json.JSONObject;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,34 +10,37 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
+
 @RestController
-@RequestMapping("/user")
-public class UserController {
+@RequestMapping("/org")
+public class OrgController {
+
 
     @Autowired
-    private UserService userService;
+    private OrganisationService orgService;
 
     @PostMapping("/save")
-    public void save(@RequestBody UserDto userDto) {
-        System.out.println(userDto.getName()+"NameHere");
-        User user = new User();
-        BeanUtils.copyProperties(userDto, user);
-        userService.save(user);
+    public void save(@RequestBody OrganisationDto orgDto) {
+        System.out.println(orgDto.getDescription()+"DescHere");
+        Organisation org = new Organisation();
+        BeanUtils.copyProperties(orgDto, org);
+        orgService.save(org);
     }
 
     @GetMapping("/all")
-    public List<User> getAll() {
-        return userService.getAll();
+    public List<Organisation> getAll() {
+        return orgService.getAll();
     }
 
 
-    @GetMapping("/searchuser/{query}")
-    public JSONObject searchUser(@PathVariable("query") String query) {
+    @GetMapping("/searchorg/{query}")
+    public JSONObject searchInOrg(@PathVariable("query") String query) {
         try {
-            List<User> user = userService.searchUser(query);
+            List<Organisation> org = orgService.searchOrg(query);
 
             JSONObject data = new JSONObject();
-            data.put("users", user);
+            data.put("Organisation", org);
             return  prepareReturnObject(200, "Search data", data);
         } catch (Exception e) {
             return prepareReturnObject(500, "Some error occurred", null);
@@ -52,5 +54,4 @@ public class UserController {
         jsonObject.put("data", data);
         return jsonObject;
     }
-
 }

@@ -1,8 +1,11 @@
 package com.example.elasticsearch.controller;
 
 
+import com.example.elasticsearch.document.Question;
 import com.example.elasticsearch.document.User;
+import com.example.elasticsearch.dto.QuestionDto;
 import com.example.elasticsearch.dto.UserDto;
+import com.example.elasticsearch.service.QuestionService;
 import com.example.elasticsearch.service.UserService;
 import net.minidev.json.JSONObject;
 import org.springframework.beans.BeanUtils;
@@ -12,33 +15,33 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user")
-public class UserController {
+@RequestMapping("/ques")
+public class QuestionController {
 
     @Autowired
-    private UserService userService;
+    private QuestionService questionService;
 
     @PostMapping("/save")
-    public void save(@RequestBody UserDto userDto) {
-        System.out.println(userDto.getName()+"NameHere");
-        User user = new User();
-        BeanUtils.copyProperties(userDto, user);
-        userService.save(user);
+    public void save(@RequestBody QuestionDto questionDto) {
+        System.out.println(questionDto.getText()+"QuesHere");
+        Question question = new Question();
+        BeanUtils.copyProperties(questionDto,question);
+        questionService.save(question);
     }
 
     @GetMapping("/all")
-    public List<User> getAll() {
-        return userService.getAll();
+    public List<Question> getAll() {
+        return questionService.getAll();
     }
 
 
     @GetMapping("/searchuser/{query}")
     public JSONObject searchUser(@PathVariable("query") String query) {
         try {
-            List<User> user = userService.searchUser(query);
+            List<Question> questions = questionService.searchQues(query);
 
             JSONObject data = new JSONObject();
-            data.put("users", user);
+            data.put("question", questions);
             return  prepareReturnObject(200, "Search data", data);
         } catch (Exception e) {
             return prepareReturnObject(500, "Some error occurred", null);
@@ -52,5 +55,4 @@ public class UserController {
         jsonObject.put("data", data);
         return jsonObject;
     }
-
 }
