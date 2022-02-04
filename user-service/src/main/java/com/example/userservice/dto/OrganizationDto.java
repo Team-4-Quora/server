@@ -2,13 +2,12 @@ package com.example.userservice.dto;
 
 import java.util.ArrayList;
 import java.util.List;
+public class OrganizationDto {
 
-public class OrganizationsDto {
     private String id;
     private String owner;
     private String name;
     private String description;
-    private List<String> mods=new ArrayList<>();
 
     public String getId() {
         return id;
@@ -40,13 +39,5 @@ public class OrganizationsDto {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public List<String> getMods() {
-        return mods;
-    }
-
-    public void setMods(List<String> mods) {
-        this.mods = mods;
     }
 }

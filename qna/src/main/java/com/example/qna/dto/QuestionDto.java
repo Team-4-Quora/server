@@ -13,6 +13,7 @@ public class QuestionDto {
     private String acceptedAnswer;
     private Boolean isModerated=false;
 
+
     public String getId() {
         return id;
     }

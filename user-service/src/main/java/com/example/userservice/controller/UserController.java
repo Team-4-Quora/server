@@ -1,6 +1,6 @@
 package com.example.userservice.controller;
 
-import com.example.userservice.Request.PointsRequest;
+import com.example.userservice.Request.PointRequest;
 import com.example.userservice.dto.UserDto;
 import com.example.userservice.entity.User;
 import com.example.userservice.service.UserService;
@@ -23,8 +23,12 @@ public class UserController {
         return userDto;
     }
 
+    @PostMapping
+    private void saveuser(User user){
+        userService.saveuser(user);
+    }
     @PostMapping("/points")
-    private void incUserPoints(@RequestBody PointsRequest pointsRequest){
-        userService.incrementUser(pointsRequest);
+    private void incUserPoints(@RequestBody PointRequest pointRequest){
+        userService.incrementUser(pointRequest);
     }
 }

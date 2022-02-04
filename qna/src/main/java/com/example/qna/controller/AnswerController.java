@@ -19,7 +19,7 @@ public class AnswerController {
     private AnswerService answerService;
 
     @PostMapping("/add")
-    void save(@RequestBody AnswerDto answerDto){
+    void saveans(@RequestBody AnswerDto answerDto){
         Answer answer=new Answer();
         BeanUtils.copyProperties(answerDto,answer);
         answer.setPostedOn(Instant.now().getEpochSecond());

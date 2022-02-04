@@ -1,6 +1,7 @@
 package com.example.userservice.Request;
 
-public class PointsRequest {
+public class PointRequest {
+
     private String email;
     private Long amount;
     private Boolean inc;

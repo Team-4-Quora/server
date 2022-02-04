@@ -22,15 +22,18 @@ public class QuestionController {
     void saveques(@RequestBody QuestionDto questionDto){
         Question question=new Question();
         BeanUtils.copyProperties(questionDto,question);
+        System.out.println("hiii");
         question.setPostedOn(Instant.now().getEpochSecond());
         questionService.save(question);
     }
 
     @GetMapping("/fetch/{type}/{value}")
-    List<QuestionDto> fetchByValue(@PathVariable(value = "type") String type, @PathVariable(value="value") String value){
+    List<QuestionDto> fetchquesByValue(@PathVariable(value = "type") String type, @PathVariable(value="value") String value){
         List<Question> questions=questionService.findByValue(type,value);
         List<QuestionDto> result = new ArrayList<>();
+        System.out.println("I am here");
         for(Question question: questions){
+
             QuestionDto questionDto = new QuestionDto();
             BeanUtils.copyProperties(question,questionDto);
             result.add(questionDto);
