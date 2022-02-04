@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/organizations")
 public class OrganizationController {
@@ -33,7 +35,7 @@ public class OrganizationController {
     @GetMapping("/getfollowers/{id}")
     FollowerDto getFollowers(@PathVariable(value="id") String orgId)
     {
-        Follower follower = followerService.findByorgId(orgId);
+        List<Follower> follower = followerService.findByOrgId(orgId);
         FollowerDto followerDto =new FollowerDto();
 
         BeanUtils.copyProperties(follower, followerDto);

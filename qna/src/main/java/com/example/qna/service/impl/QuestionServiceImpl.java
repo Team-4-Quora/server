@@ -28,13 +28,6 @@ public class QuestionServiceImpl implements QuestionService {
         return questionRepository.findById(id).get();
     }
 
-    @Override
-    public void setAcceptedAnswer(String id,String answerId) {
-        Question question=findById(id);
-        question.setAcceptedAnswer(answerId);
-        answerService.setAnswerAccepted(answerId);
-        save(question);
-    }
 
     @Override
     public List<Question> findByValue(String type, String value) {

@@ -6,6 +6,8 @@ import com.example.userservice.service.FollowerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class FollowerServiceImpl implements FollowerService {
 
@@ -13,13 +15,13 @@ public class FollowerServiceImpl implements FollowerService {
     FollowerRepository followerRepository;
 
     @Override
-    public Follower findByEmail(String email) {
+    public List<Follower> findByEmail(String email) {
         return followerRepository.findByEmail(email);
     }
 
     @Override
-    public Follower findByorgId(String orgid){
-        return followerRepository.findByorgId(orgid);
+    public List<Follower> findByOrgId(String orgid){
+        return followerRepository.findByOrgId(orgid);
 
     }
 

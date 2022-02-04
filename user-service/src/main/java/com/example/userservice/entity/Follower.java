@@ -4,8 +4,6 @@ import com.sun.istack.internal.NotNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.List;
-
 @Document
 public class Follower {
     @Id
@@ -13,7 +11,7 @@ public class Follower {
     @NotNull
     private String email;
     private String orgId;
-    private String requester_id;
+    private String requesterId;
     private Integer status;
 
 
@@ -50,11 +48,11 @@ public class Follower {
         this.status = status;
     }
 
-    public String getRequester_id() {
-        return requester_id;
+    public String getRequesterId() {
+        return requesterId;
     }
 
-    public void setRequester_id(String requester_id) {
-        this.requester_id = requester_id;
+    public void setRequesterId(String requesterId) {
+        this.requesterId = requesterId;
     }
 }

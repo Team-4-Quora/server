@@ -18,6 +18,7 @@ public class UserServiceImpl implements UserService {
         return userRepository.findById(email).get();
     }
 
+    // todo : this should be consumed from Kafka / RabbitMQ
     @Override
     public void incrementUser(PointRequest pointRequest) {
         User user= userRepository.findById(pointRequest.getEmail()).get();
@@ -25,7 +26,6 @@ public class UserServiceImpl implements UserService {
             user.setPoints(user.getPoints()+ pointRequest.getAmount());
         else
             user.setPoints(user.getPoints()- pointRequest.getAmount());
-
         userRepository.save(user);
     }
 

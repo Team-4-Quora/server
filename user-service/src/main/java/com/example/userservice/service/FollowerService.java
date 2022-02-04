@@ -2,10 +2,12 @@ package com.example.userservice.service;
 
 import com.example.userservice.entity.Follower;
 
-public interface FollowerService {
-    Follower findByEmail(String email);
+import java.util.List;
 
-    Follower findByorgId(String orgid);
+public interface FollowerService {
+    List<Follower> findByEmail(String email);
+
+    List<Follower> findByOrgId(String orgid);
     Iterable<Follower> findall();
 
 

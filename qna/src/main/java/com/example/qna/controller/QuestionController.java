@@ -41,9 +41,6 @@ public class QuestionController {
         return result;
     }
 
-    @PostMapping("/accepted/{id}/{ansId}")
-    void setAcceptedAnswer(@PathVariable(value = "id") String id, @PathVariable(value = "ansId")String ansId){
-        questionService.setAcceptedAnswer(id,ansId);
-    }
+
 }
 

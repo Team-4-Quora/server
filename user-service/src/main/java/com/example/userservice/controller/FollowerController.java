@@ -20,13 +20,13 @@ public class FollowerController {
     @GetMapping("/fetch/{email}")
     List<String> getUsersList(@PathVariable(name = "email") String email){
         List<String>  userFollowers=new ArrayList<>();
-        Iterable<Follower> temp= followerService.findall();
+        List<Follower> temp= followerService.findByEmail(email);
 
         for(Follower follower :temp)
         {
-            if(follower.getEmail().equals(email) && follower.getStatus().equals("1"))
+            if(follower.getStatus().equals("1"))
             {
-                userFollowers.add(follower.getRequester_id());
+                userFollowers.add(follower.getRequesterId());
             }
         }
 
