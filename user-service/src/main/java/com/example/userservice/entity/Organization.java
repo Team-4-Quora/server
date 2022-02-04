@@ -4,10 +4,9 @@ import com.sun.istack.internal.NotNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.List;
 
 @Document
-public class Organizations {
+public class Organization {
     @Id
     private String id;
     @NotNull
@@ -15,7 +14,8 @@ public class Organizations {
     @NotNull
     private String name;
     private String description;
-    private List<String> mods;
+
+
 
     public String getId() {
         return id;
@@ -49,11 +49,5 @@ public class Organizations {
         this.description = description;
     }
 
-    public List<String> getMods() {
-        return mods;
-    }
 
-    public void setMods(List<String> mods) {
-        this.mods = mods;
-    }
 }

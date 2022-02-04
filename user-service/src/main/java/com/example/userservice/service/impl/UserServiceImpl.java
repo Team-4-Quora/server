@@ -1,6 +1,6 @@
 package com.example.userservice.service.impl;
 
-import com.example.userservice.Request.PointsRequest;
+import com.example.userservice.Request.PointRequest;
 import com.example.userservice.entity.User;
 import com.example.userservice.repository.UserRepository;
 import com.example.userservice.service.UserService;
@@ -19,13 +19,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void incrementUser(PointsRequest pointsRequest) {
-        User user= userRepository.findById(pointsRequest.getEmail()).get();
-        if(pointsRequest.getInc())
-            user.setPoints(user.getPoints()+ pointsRequest.getAmount());
+    public void incrementUser(PointRequest pointRequest) {
+        User user= userRepository.findById(pointRequest.getEmail()).get();
+        if(pointRequest.getInc())
+            user.setPoints(user.getPoints()+ pointRequest.getAmount());
         else
-            user.setPoints(user.getPoints()- pointsRequest.getAmount());
+            user.setPoints(user.getPoints()- pointRequest.getAmount());
 
+        userRepository.save(user);
+    }
+
+    @Override
+    public void saveuser(User user) {
         userRepository.save(user);
     }
 }
