@@ -21,7 +21,8 @@ public class ReactionServiceImpl implements ReactionService {
             reactionRepository.save(reaction);
         }
         else if(answer.getLike()==reaction.getLike() || question.getLike()==reaction.getLike()){
-            delete(reaction.getId());
+            Reaction savedReaction = reactionRepository.findByAnswerIdAndReactionBy(reaction.getAnswerId(),reaction.getReactionBy());
+            reactionRepository.delete(savedReaction);
         }else if(answer.getLike()!=reaction.getLike()){
             answer.setLike(!reaction.getLike());
             reactionRepository.save(answer);
