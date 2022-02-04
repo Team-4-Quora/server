@@ -23,8 +23,8 @@ public class UserController {
         return userDto;
     }
 
-    @PostMapping
-    private void saveuser(User user){
+    @PostMapping("/save")
+    private void saveuser(@RequestBody  User user){
         userService.saveuser(user);
     }
     @PostMapping("/points")
