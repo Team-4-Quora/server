@@ -4,8 +4,7 @@ import com.sun.istack.internal.NotNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.sql.Timestamp;
-
+// todo :nested comment support needs to be implemented
 @Document
 public class Comment {
     @Id
@@ -17,6 +16,15 @@ public class Comment {
     @NotNull
     private Long postedOn;
     private String commentBy;
+    private String parentComment;
+
+    public String getParentComment() {
+        return parentComment;
+    }
+
+    public void setParentComment(String parentComment) {
+        this.parentComment = parentComment;
+    }
 
     public String getCommentBy() {
         return commentBy;

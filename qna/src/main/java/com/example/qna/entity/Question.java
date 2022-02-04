@@ -19,7 +19,7 @@ public class Question {
     private String shareableLink;
     private Boolean isThreadClosed;
     private String category;
-    private String acceptedAnswer;
+
     private Boolean isModerated;
 
     public String getId() {
@@ -86,13 +86,6 @@ public class Question {
         this.category = category;
     }
 
-    public String getAcceptedAnswer() {
-        return acceptedAnswer;
-    }
-
-    public void setAcceptedAnswer(String acceptedAnswer) {
-        this.acceptedAnswer = acceptedAnswer;
-    }
 
     public Boolean getModerated() {
         return isModerated;

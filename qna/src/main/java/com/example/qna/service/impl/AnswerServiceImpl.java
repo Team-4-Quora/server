@@ -37,10 +37,6 @@ public class AnswerServiceImpl implements AnswerService {
         Reaction reaction=reactionService.findByAnswerIdAndReactionBy(id,answer.getAnswerBy());
         reactionService.delete(reaction.getId());
         commentService.deleteByAnswerId(answer.getId());
-        Question question=questionRepository.findById(answer.getQuestionId()).get();
-        if(question.getAcceptedAnswer().equals(answer.getId()))
-            question.setAcceptedAnswer(null);
-            questionRepository.save(question);
         answerRepository.delete(answer);
     }
 

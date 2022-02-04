@@ -43,4 +43,10 @@ public class AnswerController {
         return answerDtos;
     }
 
+
+    @PostMapping("/accepted/{ansId}")
+    void setAcceptedAnswer(@PathVariable(value = "ansId")String ansId){
+        answerService.setAnswerAccepted(ansId);
+    }
+
 }
