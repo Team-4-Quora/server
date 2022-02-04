@@ -5,10 +5,7 @@ import com.example.userservice.entity.Organizations;
 import com.example.userservice.service.OrganizationsService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/organizations")
@@ -22,5 +19,11 @@ public class OrganizationsController {
         OrganizationsDto organizationsDto=new OrganizationsDto();
         BeanUtils.copyProperties(organization,organizationsDto);
         return organizationsDto;
+    }
+    @PostMapping("/add")
+    void save(@RequestBody OrganizationsDto organizationsDto){
+        Organizations organization=new Organizations();
+        BeanUtils.copyProperties(organizationsDto,organization);
+        organizationsService.save(organization);
     }
 }

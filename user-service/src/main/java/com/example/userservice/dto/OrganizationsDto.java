@@ -1,5 +1,6 @@
 package com.example.userservice.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class OrganizationsDto {
@@ -7,7 +8,7 @@ public class OrganizationsDto {
     private String owner;
     private String name;
     private String description;
-    private List<String> mods;
+    private List<String> mods=new ArrayList<>();
 
     public String getId() {
         return id;
