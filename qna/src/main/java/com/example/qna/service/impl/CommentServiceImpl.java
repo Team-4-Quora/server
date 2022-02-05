@@ -38,4 +38,5 @@ public class CommentServiceImpl implements CommentService {
         commentRepository.deleteByParentComment(id);
         commentRepository.deleteById(id);
     }
+
 }

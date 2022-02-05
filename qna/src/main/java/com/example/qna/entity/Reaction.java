@@ -11,8 +11,9 @@ public class Reaction {
     private String questionId;
     @NotNull
     private String reactionBy;
+
     @NotNull
-    private Boolean isLike;
+    private Boolean like;
     private String answerId;
     private Long reactedOn;
 
@@ -41,11 +42,11 @@ public class Reaction {
     }
 
     public Boolean getLike() {
-        return isLike;
+        return like;
     }
 
     public void setLike(Boolean like) {
-        isLike = like;
+        this.like = like;
     }
 
     public Long getReactedOn() {
