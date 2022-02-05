@@ -5,6 +5,7 @@ import com.example.qna.entity.Question;
 import com.example.qna.entity.Reaction;
 import com.example.qna.repository.AnswerRepository;
 import com.example.qna.repository.QuestionRepository;
+import com.example.qna.repository.ReactionRepository;
 import com.example.qna.service.AnswerService;
 import com.example.qna.service.CommentService;
 import com.example.qna.service.QuestionService;
@@ -26,6 +27,7 @@ public class AnswerServiceImpl implements AnswerService {
     @Autowired
     private QuestionRepository questionRepository;
 
+
     @Override
     public void save(Answer answer) {
         answerRepository.save(answer);
@@ -34,8 +36,7 @@ public class AnswerServiceImpl implements AnswerService {
     @Override
     public void delete(String id) {
         Answer answer=findById(id);
-        Reaction reaction=reactionService.findByAnswerIdAndReactionBy(id,answer.getAnswerBy());
-        reactionService.delete(reaction.getId());
+        reactionService.deleteByAnswerId(id);
         commentService.deleteByAnswerId(answer.getId());
         answerRepository.delete(answer);
     }

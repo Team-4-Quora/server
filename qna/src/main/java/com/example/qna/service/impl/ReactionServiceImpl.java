@@ -26,9 +26,9 @@ public class ReactionServiceImpl implements ReactionService {
             reactionRepository.save(reaction);
         }
         else if(dbReacton.getLike()==reaction.getLike()){
-            delete(reaction.getId());
+            reactionRepository.delete(dbReacton);
         }else if(dbReacton.getLike()!=reaction.getLike()) {
-            dbReacton.setLike(!reaction.getLike());
+            dbReacton.setLike(!dbReacton.getLike());
             reactionRepository.save(dbReacton);
         }
     }
@@ -48,6 +48,8 @@ public class ReactionServiceImpl implements ReactionService {
         reactionRepository.deleteById(id);
     }
 
+
+
     @Override
     public Reaction findByQuestionIdAndReactionBy(String id, String email) {
         return reactionRepository.findByQuestionIdAndReactionBy(id,email);
@@ -56,5 +58,10 @@ public class ReactionServiceImpl implements ReactionService {
     @Override
     public Reaction findByAnswerIdAndReactionBy(String id, String email) {
         return reactionRepository.findByAnswerIdAndReactionBy(id,email);
+    }
+
+    @Override
+    public void deleteByAnswerId(String id) {
+        reactionRepository.deleteByAnswerId(id);
     }
 }

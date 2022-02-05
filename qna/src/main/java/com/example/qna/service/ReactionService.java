@@ -11,4 +11,5 @@ public interface ReactionService {
     Reaction findByAnswerIdAndReactionBy(String id,String email);
     void delete(String id);
     void save(Reaction reaction);
+    void deleteByAnswerId(String id);
 }

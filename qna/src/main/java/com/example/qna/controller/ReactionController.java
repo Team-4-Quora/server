@@ -22,6 +22,7 @@ public class ReactionController {
         Reaction reaction=new Reaction();
         BeanUtils.copyProperties(reactionDto,reaction);
         reaction.setReactedOn(Instant.now().getEpochSecond());
+        reaction.setLike(reactionDto.getLike());
         reactionService.save(reaction);
     }
 
