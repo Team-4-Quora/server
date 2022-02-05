@@ -11,7 +11,7 @@ public class Follower {
     @NotNull
     private String email;
     private String orgId;
-    private String requesterId;
+    private String requesterEmail;
     private Integer status;
 
 
@@ -48,11 +48,11 @@ public class Follower {
         this.status = status;
     }
 
-    public String getRequesterId() {
-        return requesterId;
+    public String getRequesterEmail() {
+        return requesterEmail;
     }
 
-    public void setRequesterId(String requesterId) {
-        this.requesterId = requesterId;
+    public void setRequesterEmail(String requesterEmail) {
+        this.requesterEmail = requesterEmail;
     }
 }
