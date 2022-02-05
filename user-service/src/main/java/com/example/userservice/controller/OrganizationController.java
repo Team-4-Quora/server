@@ -29,7 +29,13 @@ public class OrganizationController {
         BeanUtils.copyProperties(organization, organizationDto);
         return organizationDto;
     }
-
+    @GetMapping("/email/{id}")
+    OrganizationDto fetchOrganization(@PathVariable(name = "id") String Id){
+        List<Organization> organization= organizationService.findByEmail(Id);
+        OrganizationDto organizationDto =new OrganizationDto();
+        BeanUtils.copyProperties(organization.get(0), organizationDto);
+        return organizationDto;
+    }
 
     @PostMapping("/add")
     void addOrg(@RequestBody OrganizationDto organizationDto){
