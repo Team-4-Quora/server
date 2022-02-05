@@ -57,4 +57,8 @@ public class AnswerServiceImpl implements AnswerService {
         save(answer);
     }
 
+    @Override
+    public List<Answer> findByQuestionIdAndIsAccepted(String id) {
+        return answerRepository.findByQuestionIdAndIsAccepted(id,true);
+    }
 }
