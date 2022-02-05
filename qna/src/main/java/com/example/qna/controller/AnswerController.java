@@ -3,6 +3,8 @@ package com.example.qna.controller;
 import com.example.qna.dto.AnswerDto;
 import com.example.qna.entity.Answer;
 import com.example.qna.service.AnswerService;
+import org.springframework.amqp.core.DirectExchange;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,12 +20,19 @@ public class AnswerController {
     @Autowired
     private AnswerService answerService;
 
+    @Autowired
+    RabbitTemplate rabbitTemplate;
+
+    @Autowired
+    DirectExchange exchangeQnaElastic;
+
     @PostMapping("/add")
     void saveans(@RequestBody AnswerDto answerDto){
         Answer answer=new Answer();
         BeanUtils.copyProperties(answerDto,answer);
         answer.setPostedOn(Instant.now().getEpochSecond());
         answerService.save(answer);
+        rabbitTemplate.convertAndSend(exchangeQnaElastic.getName(),"routing.QnaElastic",answer);
     }
 
     @PostMapping("/delete/{id}")
