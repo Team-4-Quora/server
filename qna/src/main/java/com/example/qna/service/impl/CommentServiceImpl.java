@@ -35,6 +35,7 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public void deleteById(String id) {
+        commentRepository.deleteByParentComment(id);
         commentRepository.deleteById(id);
     }
 }

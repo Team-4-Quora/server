@@ -34,9 +34,11 @@ public class CommentController {
         List<Comment> comments=commentService.findByAnswerId(id);
         List<CommentDto> commentDtos=new ArrayList<>();
         for(Comment comment:comments){
-            CommentDto commentDto=new CommentDto();
-            BeanUtils.copyProperties(comment,commentDto);
-            commentDtos.add(commentDto);
+            if(comment.getParentComment()==null) {
+                CommentDto commentDto = new CommentDto();
+                BeanUtils.copyProperties(comment, commentDto);
+                commentDtos.add(commentDto);
+            }
         }
         return commentDtos;
     }
