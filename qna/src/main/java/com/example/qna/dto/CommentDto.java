@@ -8,6 +8,15 @@ public class CommentDto {
     private String message;
     private Long postedOn;
     private String commentBy;
+    private String parentComment;
+
+    public String getParentComment() {
+        return parentComment;
+    }
+
+    public void setParentComment(String parentComment) {
+        this.parentComment = parentComment;
+    }
 
     public String getCommentBy() {
         return commentBy;
