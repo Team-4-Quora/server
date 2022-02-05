@@ -32,7 +32,7 @@ public class FollowerController {
         List<Follower> temp = followerService.findByEmail(email);
         for (Follower follower : temp) {
             if (follower.getStatus() == 1) {
-                User user = userService.findById(follower.getRequesterEmail());
+                User user = userService.findById(follower.getRequesterId());
                 UserDto userDto = new UserDto();
                 BeanUtils.copyProperties(user, userDto);
                 userFollowers.add(userDto);

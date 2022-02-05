@@ -5,16 +5,16 @@ public class FollowerDto {
     private String id;
     private String email;
     private String orgId;
-    private String requesterEmail;
+    private String requesterId;
     private Integer status;
 
 
-    public String getRequesterEmail() {
-        return requesterEmail;
+    public String getRequesterId() {
+        return requesterId;
     }
 
-    public void setRequesterEmail(String requesterEmail) {
-        this.requesterEmail = requesterEmail;
+    public void setRequesterId(String requesterId) {
+        this.requesterId = requesterId;
     }
 
     public String getId() {
