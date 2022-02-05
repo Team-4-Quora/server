@@ -8,6 +8,7 @@ public class FollowerDto {
     private String requesterId;
     private Integer status;
 
+
     public String getRequesterId() {
         return requesterId;
     }

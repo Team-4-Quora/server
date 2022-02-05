@@ -1,5 +1,11 @@
 package com.example.userservice.controller;
 
+
+import com.example.userservice.dto.UserDto;
+import com.example.userservice.entity.User;
+import com.example.userservice.entity.Follower;
+import com.example.userservice.service.FollowerService;
+import com.example.userservice.service.UserService;
 import com.example.userservice.dto.FollowerDto;
 import com.example.userservice.entity.Follower;
 import com.example.userservice.service.FollowerService;
@@ -17,6 +23,24 @@ public class FollowerController {
     @Autowired
     private FollowerService followerService;
 
+    @Autowired
+    private UserService userService;
+
+    @GetMapping("/fetch/{email}")
+    List<UserDto> getUsersList(@PathVariable(value = "email") String email) {
+        List<UserDto> userFollowers = new ArrayList<>();
+        List<Follower> temp = followerService.findByEmail(email);
+        for (Follower follower : temp) {
+            if (follower.getStatus() == 1) {
+                User user = userService.findById(follower.getRequesterId());
+                UserDto userDto = new UserDto();
+                BeanUtils.copyProperties(user, userDto);
+                userFollowers.add(userDto);
+            }
+        }
+
+        return  userFollowers;
+    }
 //    @GetMapping("/fetch/{email}")
 //    List<String> getUsersList(@PathVariable(name = "email") String email){
 //        List<String>  userFollowers=new ArrayList<>();

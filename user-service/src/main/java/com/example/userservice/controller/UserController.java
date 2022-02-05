@@ -10,7 +10,8 @@ import com.example.userservice.entity.User;
 import com.example.userservice.response.LoginResponse;
 import com.example.userservice.service.FollowerService;
 import com.example.userservice.service.UserService;
-import org.apache.kafka.common.security.auth.Login;
+import org.springframework.amqp.core.DirectExchange;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
@@ -23,6 +24,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/user")
 public class UserController {
+
+    @Autowired
+    RabbitTemplate rabbitTemplate;
+
+    @Autowired
+    DirectExchange exchangeUserElastic;
 
     @Autowired
     private UserService userService;
@@ -62,10 +69,11 @@ public class UserController {
     }
 
     @PostMapping("/add")
-    private void save(@RequestBody UserDto userDto){
+    private void saveuser(@RequestBody UserDto userDto){
         User user = new User();
         BeanUtils.copyProperties(userDto,user);
         userService.save(user);
+        rabbitTemplate.convertAndSend(exchangeUserElastic.getName(),"routing.UserElastic",user);
     }
 
     @PostMapping("/points")
