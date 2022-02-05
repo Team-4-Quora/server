@@ -8,10 +8,7 @@ import com.example.userservice.service.FollowerService;
 import com.example.userservice.service.OrganizationService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -41,5 +38,11 @@ public class OrganizationController {
         BeanUtils.copyProperties(follower, followerDto);
 
         return followerDto;
+    }
+    @PostMapping("/add")
+    void addOrg(@RequestBody OrganizationDto organizationDto){
+        Organization organization=new Organization();
+        BeanUtils.copyProperties(organizationDto,organization);
+        organizationService.save(organization);
     }
 }
