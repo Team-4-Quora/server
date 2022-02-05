@@ -6,5 +6,5 @@ import com.example.userservice.entity.User;
 public interface UserService {
     User findById(String email);
     void incrementUser(PointRequest pointRequest);
-    void saveuser(User user);
+    void save(User user);
 }

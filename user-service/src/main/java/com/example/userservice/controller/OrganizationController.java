@@ -10,6 +10,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -29,16 +30,7 @@ public class OrganizationController {
         return organizationDto;
     }
 
-    @GetMapping("/getfollowers/{id}")
-    FollowerDto getFollowers(@PathVariable(value="id") String orgId)
-    {
-        List<Follower> follower = followerService.findByOrgId(orgId);
-        FollowerDto followerDto =new FollowerDto();
 
-        BeanUtils.copyProperties(follower, followerDto);
-
-        return followerDto;
-    }
     @PostMapping("/add")
     void addOrg(@RequestBody OrganizationDto organizationDto){
         Organization organization=new Organization();

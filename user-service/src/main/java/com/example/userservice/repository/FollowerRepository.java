@@ -10,5 +10,9 @@ import java.util.List;
 public interface FollowerRepository extends MongoRepository<Follower,String> {
     List<Follower> findByEmail(String email);
     List<Follower> findByOrgId(String orgid);
+    List<Follower> findByEmailAndRequesterId(String id,String reqId);
+    List<Follower> findByEmailAndStatus(String id,int status);
+    List<Follower> findByRequesterIdAndStatus(String id,int status);
+
 
 }

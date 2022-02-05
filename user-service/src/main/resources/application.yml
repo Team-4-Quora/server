@@ -1,0 +1,12 @@
+#spring:
+#  application:
+#    name: quora
+#
+#eureka:
+#  client:
+#    registerWithEureka: true
+#    fetchRegistry: true
+#    serviceUrl:
+#      defaultZone: http://10.177.1.200:8761
+#    instances:
+#      hostname: commoninfra-eureka-server
