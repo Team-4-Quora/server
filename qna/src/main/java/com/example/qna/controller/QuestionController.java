@@ -20,9 +20,8 @@ public class QuestionController {
 
     @PostMapping("/add")
     void saveques(@RequestBody QuestionDto questionDto){
-        Question question=new Question();
+        Question question = new Question();
         BeanUtils.copyProperties(questionDto,question);
-        System.out.println("hiii");
         question.setPostedOn(Instant.now().getEpochSecond());
         questionService.save(question);
     }
@@ -31,7 +30,6 @@ public class QuestionController {
     List<QuestionDto> fetchquesByValue(@PathVariable(value = "type") String type, @PathVariable(value="value") String value){
         List<Question> questions=questionService.findByValue(type,value);
         List<QuestionDto> result = new ArrayList<>();
-        System.out.println("I am here");
         for(Question question: questions){
 
             QuestionDto questionDto = new QuestionDto();
