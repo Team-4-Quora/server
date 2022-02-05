@@ -19,6 +19,11 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
+    public List<Comment> findByAnswerIdAndParentComment(String id,String parentComment) {
+        return commentRepository.findByAnswerIdAndParentComment(id,parentComment);
+    }
+
+    @Override
     public List<Comment> findByAnswerId(String id) {
         return commentRepository.findByAnswerId(id);
     }
@@ -30,6 +35,7 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public void deleteById(String id) {
+        commentRepository.deleteByParentComment(id);
         commentRepository.deleteById(id);
     }
 }

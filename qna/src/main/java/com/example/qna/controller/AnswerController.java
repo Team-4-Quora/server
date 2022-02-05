@@ -49,4 +49,15 @@ public class AnswerController {
         answerService.setAnswerAccepted(ansId);
     }
 
+    @GetMapping("/fetch/accepted/{queId}")
+    AnswerDto getAcceptedAnswer(@PathVariable(value = "queId") String queId){
+        List<Answer> answers=answerService.findByQuestionIdAndIsAccepted(queId);
+        AnswerDto selectedAnswer=new AnswerDto();
+        if (answers.size()>0){
+        BeanUtils.copyProperties(answers.get(0),selectedAnswer);
+        return selectedAnswer;
+        }
+        return null;
+    }
+
 }

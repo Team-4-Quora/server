@@ -23,10 +23,11 @@ public class UserController {
         return userDto;
     }
 
-    @PostMapping("/save")
-    private void saveuser(@RequestBody  User user){
+    @PostMapping("/add")
+    private void saveuser(User user){
         userService.saveuser(user);
     }
+
     @PostMapping("/points")
     private void incUserPoints(@RequestBody PointRequest pointRequest){
         userService.incrementUser(pointRequest);

@@ -14,6 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/people")
 public class FollowerController {
+
     @Autowired
     private FollowerService followerService;
 
@@ -21,16 +22,13 @@ public class FollowerController {
     List<String> getUsersList(@PathVariable(name = "email") String email){
         List<String>  userFollowers=new ArrayList<>();
         List<Follower> temp= followerService.findByEmail(email);
-
         for(Follower follower :temp)
         {
-            if(follower.getStatus().equals("1"))
+            if(follower.getStatus()==1)
             {
                 userFollowers.add(follower.getRequesterId());
             }
         }
-
         return userFollowers;
-
     }
 }
