@@ -26,22 +26,22 @@ public class FollowerController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/fetch/{email}")
-    List<UserDto> getUsersList(@PathVariable(value = "email") String email) {
-        List<UserDto> userFollowers = new ArrayList<>();
-        List<Follower> temp = followerService.findByEmail(email);
-        for (Follower follower : temp) {
-            if (follower.getStatus() == 1) {
-                User user = userService.findById(follower.getRequesterId());
-                UserDto userDto = new UserDto();
-                BeanUtils.copyProperties(user, userDto);
-                userFollowers.add(userDto);
-            }
-        }
-
-        return  userFollowers;
-    }
 //    @GetMapping("/fetch/{email}")
+//    List<UserDto> getUsersList(@PathVariable(value = "email") String email) {
+//        List<UserDto> userFollowers = new ArrayList<>();
+//        List<Follower> temp = followerService.findByEmail(email);
+//        for (Follower follower : temp) {
+//            if (follower.getStatus() == 1) {
+//                User user = userService.findById(follower.getRequesterId());
+//                UserDto userDto = new UserDto();
+//                BeanUtils.copyProperties(user, userDto);
+//                userFollowers.add(userDto);
+//            }
+//        }
+//
+//        return  userFollowers;
+//    }
+////    @GetMapping("/fetch/{email}")
 //    List<String> getUsersList(@PathVariable(name = "email") String email){
 //        List<String>  userFollowers=new ArrayList<>();
 //        List<Follower> temp= followerService.findByEmail(email);

@@ -14,6 +14,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMQConfig {
     private static final String ROUTING_USER_ELASTIC ="routing.UserElastic";
+    private static final String ROUTING_ORG_ELASTIC ="routing.OrgElastic";
+
 
     @Bean
     Queue queueUserElastic(){
@@ -21,13 +23,30 @@ public class RabbitMQConfig {
     }
 
     @Bean
+    Queue queueOrgElastic(){
+        return new Queue("queue.OrgElastic",false);
+    }
+
+
+    @Bean
     DirectExchange exchangeUserElastic(){
         return new DirectExchange("direct.exchangeUserElastic");
     }
 
     @Bean
+    DirectExchange exchangeOrgElastic(){
+        return new DirectExchange("direct.exchangeOrgElastic");
+    }
+
+
+    @Bean
     Binding bindingUserElastic(Queue queueUserElastic, DirectExchange exchangeUserElastic){
         return BindingBuilder.bind(queueUserElastic).to(exchangeUserElastic).with(ROUTING_USER_ELASTIC);
+    }
+
+    @Bean
+    Binding bindingOrgElastic(Queue queueOrgElastic, DirectExchange exchangeOrgElastic){
+        return BindingBuilder.bind(queueOrgElastic).to(exchangeOrgElastic).with(ROUTING_ORG_ELASTIC);
     }
 
 
