@@ -24,7 +24,7 @@ public class AnswerController {
     RabbitTemplate rabbitTemplate;
 
     @Autowired
-    DirectExchange exchangeQnaElastic;
+    DirectExchange exchangeQnaElasticTwo;
 
     @PostMapping("/add")
     void saveans(@RequestBody AnswerDto answerDto){
@@ -32,7 +32,7 @@ public class AnswerController {
         BeanUtils.copyProperties(answerDto,answer);
         answer.setPostedOn(Instant.now().getEpochSecond());
         answerService.save(answer);
-        rabbitTemplate.convertAndSend(exchangeQnaElastic.getName(),"routing.QnaElastic",answer);
+        rabbitTemplate.convertAndSend(exchangeQnaElasticTwo.getName(),"routing.QnaElasticTwo",answer);
     }
 
     @PostMapping("/delete/{id}")
