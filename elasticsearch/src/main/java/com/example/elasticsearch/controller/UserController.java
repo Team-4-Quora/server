@@ -5,10 +5,12 @@ import com.example.elasticsearch.document.User;
 import com.example.elasticsearch.dto.UserDto;
 import com.example.elasticsearch.service.UserService;
 import net.minidev.json.JSONObject;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -18,6 +20,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @RabbitListener(queues = "queue.UserElastic")
     @PostMapping("/save")
     public void save(@RequestBody UserDto userDto) {
         System.out.println(userDto.getName()+"NameHere");
@@ -33,16 +36,33 @@ public class UserController {
 
 
     @GetMapping("/searchuser/{query}")
-    public JSONObject searchUser(@PathVariable("query") String query) {
+    public List<UserDto> searchUser(@PathVariable("query") String query) {
         try {
-            List<User> user = userService.searchUser(query);
+            List<User> userlist = userService.searchUser(query);
+            List<UserDto> userDtos=new ArrayList<>();
 
-            JSONObject data = new JSONObject();
-            data.put("users", user);
-            return  prepareReturnObject(200, "Search data", data);
-        } catch (Exception e) {
-            return prepareReturnObject(500, "Some error occurred", null);
+            for(User user:userlist)
+            {
+                 UserDto userDto=new UserDto();
+                 BeanUtils.copyProperties(user,userDto);
+                 userDtos.add(userDto);
+
+            }
+
+            return  userDtos;
         }
+        catch (Exception e)
+        {
+            return  null;
+        }
+
+
+//            JSONObject data = new JSONObject();
+//            data.put("users", user);
+//            return  prepareReturnObject(200, "Search data", data);
+//        } catch (Exception e) {
+//            return prepareReturnObject(500, "Some error occurred", null);
+//        }
     }
 
     public JSONObject prepareReturnObject(int status, String message, JSONObject data) {

@@ -12,7 +12,7 @@ public interface UserRepository extends ElasticsearchRepository<User,String> {
 
     public List<User> findAllByName(String name);
 
-    @Query("{ \"multi_match\": { \"fields\":  [\"name\",\"email\"], \"query\": \"?0\", \"fuzziness\": \"AUTO\"}}}")
+    @Query("{ \"multi_match\": { \"fields\":  [\"email\",\"name\"], \"query\": \"?0\", \"fuzziness\": \"max_extension\"}}}")
     public List<User> searchUser(String query);
 
 
