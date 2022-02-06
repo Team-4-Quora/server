@@ -4,6 +4,8 @@ import com.example.userservice.dto.FollowerDto;
 import com.example.userservice.dto.OrganizationDto;
 import com.example.userservice.entity.Follower;
 import com.example.userservice.entity.Organization;
+import com.example.userservice.kafka.dto.Pages;
+import com.example.userservice.kafka.service.PagesService;
 import com.example.userservice.service.FollowerService;
 import com.example.userservice.service.OrganizationService;
 import org.springframework.amqp.core.DirectExchange;
@@ -23,6 +25,9 @@ public class OrganizationController {
 
     @Autowired
     private FollowerService followerService;
+
+    @Autowired
+    private PagesService pagesService;
 
 
     @Autowired
@@ -53,6 +58,10 @@ public class OrganizationController {
         BeanUtils.copyProperties(organizationDto,organization);
         organizationService.save(organization);
         rabbitTemplate.convertAndSend(exchangeOrgElastic.getName(),"routing.OrgElastic",organization);
+    }
 
+    @PostMapping("/send/analytics")
+    void sendAnalytics(@RequestBody Pages page){
+        pagesService.sendOrgData(page);
     }
 }

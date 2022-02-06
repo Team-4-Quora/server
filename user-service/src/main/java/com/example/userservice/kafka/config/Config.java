@@ -1,8 +1,7 @@
-package com.example.qna.kafka.config;
+package com.example.userservice.kafka.config;
 
 
-import com.example.qna.kafka.dto.Qna;
-import org.springframework.kafka.support.serializer.JsonSerializer;
+import net.minidev.json.JSONObject;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.context.annotation.Bean;
@@ -11,16 +10,17 @@ import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
+import org.springframework.kafka.support.serializer.JsonSerializer;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
 @EnableKafka
-public class QnaConfig {
+public class Config {
 
     @Bean
-    public ProducerFactory<String, Qna>
+    public ProducerFactory<String, JSONObject>
     producerFactory()
     {
         // Create a map of a string
@@ -44,7 +44,7 @@ public class QnaConfig {
     }
 
     @Bean
-    public KafkaTemplate<String, Qna>
+    public KafkaTemplate<String, JSONObject>
     kafkaTemplate()
     {
         return new KafkaTemplate<>(
