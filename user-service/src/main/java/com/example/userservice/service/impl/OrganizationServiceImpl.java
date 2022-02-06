@@ -6,6 +6,8 @@ import com.example.userservice.service.OrganizationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class OrganizationServiceImpl implements OrganizationService {
     @Autowired
@@ -19,5 +21,10 @@ public class OrganizationServiceImpl implements OrganizationService {
     @Override
     public Organization findById(String id) {
         return organizationRepository.findById(id).get();
+    }
+
+    @Override
+    public List<Organization> findByEmail(String email) {
+        return organizationRepository.findByEmail(email);
     }
 }
