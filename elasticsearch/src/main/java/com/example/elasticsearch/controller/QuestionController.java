@@ -40,6 +40,8 @@ public class QuestionController {
         try {
             List<Question> questions = questionService.searchQues(query);
 
+            //todo : instead of JSONObject .. use Question DTO
+
             JSONObject data = new JSONObject();
             data.put("question", questions);
             return  prepareReturnObject(200, "Search data", data);
