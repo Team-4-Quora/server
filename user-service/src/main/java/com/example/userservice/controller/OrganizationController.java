@@ -6,6 +6,8 @@ import com.example.userservice.entity.Follower;
 import com.example.userservice.entity.Organization;
 import com.example.userservice.service.FollowerService;
 import com.example.userservice.service.OrganizationService;
+import org.springframework.amqp.core.DirectExchange;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +23,14 @@ public class OrganizationController {
 
     @Autowired
     private FollowerService followerService;
+
+
+    @Autowired
+    RabbitTemplate rabbitTemplate;
+
+    @Autowired
+    DirectExchange exchangeOrgElastic;
+
 
     @GetMapping("/{id}")
     OrganizationDto getAnOrganization(@PathVariable(name = "id") String orgId){
@@ -42,5 +52,7 @@ public class OrganizationController {
         Organization organization=new Organization();
         BeanUtils.copyProperties(organizationDto,organization);
         organizationService.save(organization);
+        rabbitTemplate.convertAndSend(exchangeOrgElastic.getName(),"routing.OrgElastic",organization);
+
     }
 }

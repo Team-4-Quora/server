@@ -4,19 +4,22 @@ import com.example.elasticsearch.document.Organisation;
 import com.example.elasticsearch.dto.OrganisationDto;
 import com.example.elasticsearch.service.OrganisationService;
 import net.minidev.json.JSONObject;
+import org.springframework.amqp.rabbit.annotation.EnableRabbit;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@EnableRabbit
 @RestController
 @RequestMapping("/answer")
 public class AnswerController {
 
     @Autowired
     private OrganisationService orgService;
-
+    @RabbitListener(queues = "queue.QnaElasticTwo")
     @PostMapping("/save")
     public void save(@RequestBody OrganisationDto orgDto) {
         System.out.println(orgDto.getDescription()+"DescHere");
@@ -31,7 +34,7 @@ public class AnswerController {
     }
 
 
-    @GetMapping("/searchorg/{query}")
+    @GetMapping("/search/{query}")
     public JSONObject searchInOrg(@PathVariable("query") String query) {
         try {
             List<Organisation> org = orgService.searchOrg(query);

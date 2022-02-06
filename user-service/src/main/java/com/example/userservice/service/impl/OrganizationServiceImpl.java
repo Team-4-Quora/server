@@ -25,6 +25,6 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     public List<Organization> findByEmail(String email) {
-        return organizationRepository.findByEmail(email);
+        return organizationRepository.findByOwner(email);
     }
 }
