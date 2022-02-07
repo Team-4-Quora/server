@@ -16,9 +16,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-
-@RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
+@RestController
 @RequestMapping("/organizations")
 public class OrganizationController {
     @Autowired
