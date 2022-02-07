@@ -7,6 +7,8 @@ import com.example.userservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -14,14 +16,22 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
-    public User findById(String email) {
-        return userRepository.findByEmail(email);
+    public User findByEmail(String email) {
+        List<User> users=userRepository.findByEmail(email);
+        User user=null;
+        if (users.size()!=0){
+            user=users.get(0);
+        }
+        return user;
     }
 
-    // todo : this should be consumed from Kafka / RabbitMQ
     @Override
     public void incrementUser(PointRequest pointRequest) {
-        User user= userRepository.findByEmail(pointRequest.getEmail());
+        List<User> users= userRepository.findByEmail(pointRequest.getEmail());
+        User user=null;
+        if (users.size()!=0){
+            user=users.get(0);
+        }
         if(pointRequest.getInc())
             user.setPoints(user.getPoints()+ pointRequest.getAmount());
         else

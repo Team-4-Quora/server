@@ -4,7 +4,7 @@ import com.example.userservice.Request.PointRequest;
 import com.example.userservice.entity.User;
 
 public interface UserService {
-    User findById(String email);
+    User findByEmail(String email);
     void incrementUser(PointRequest pointRequest);
     void save(User user);
 }

@@ -42,7 +42,7 @@ public class UserController {
 
     @GetMapping("/stats/{email}")
     private UserDto getUserStats(@PathVariable(value = "email") String email){
-        User user=userService.findById(email);
+        User user = userService.findByEmail(email);
         UserDto userDto=new UserDto();
         BeanUtils.copyProperties(user,userDto);
         return userDto;

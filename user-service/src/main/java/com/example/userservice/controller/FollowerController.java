@@ -89,7 +89,7 @@ public class FollowerController {
         List<FollowerDto> followers=followerService.fetchFollowerData("followers",id);
         List <String> result=new ArrayList<>();
         for (FollowerDto followerDto:followers){
-            result.add(followerDto.getEmail());
+            result.add(followerDto.getRequesterId());
         }
         return result;
     }
