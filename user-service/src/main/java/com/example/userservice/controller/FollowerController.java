@@ -83,4 +83,15 @@ public class FollowerController {
     private List<FollowerDto> fetchFollowerData(@PathVariable(value = "type") String type,@PathVariable(value = "id") String id){
         return followerService.fetchFollowerData(type,id);
     }
+
+    @GetMapping("/get/followers/{id}")
+    private List<String> fetchFollowers(@PathVariable(value = "id") String id){
+        List<FollowerDto> followers=followerService.fetchFollowerData("followers",id);
+        List <String> result=new ArrayList<>();
+        for (FollowerDto followerDto:followers){
+            result.add(followerDto.getEmail());
+        }
+        return result;
+    }
 }
+

@@ -15,13 +15,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findById(String email) {
-        return userRepository.findById(email).get();
+        return userRepository.findByEmail(email);
     }
 
     // todo : this should be consumed from Kafka / RabbitMQ
     @Override
     public void incrementUser(PointRequest pointRequest) {
-        User user= userRepository.findById(pointRequest.getEmail()).get();
+        User user= userRepository.findByEmail(pointRequest.getEmail());
         if(pointRequest.getInc())
             user.setPoints(user.getPoints()+ pointRequest.getAmount());
         else

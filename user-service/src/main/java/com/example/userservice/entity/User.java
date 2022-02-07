@@ -7,11 +7,20 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class User {
 
     @Id
+    private String id;
     private String email;
     private Long points;
     private String level;
     private String name;
 
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

@@ -1,13 +1,18 @@
 package com.example.qna.controller;
 
+import com.example.qna.Request.Followers;
 import com.example.qna.dto.QuestionDto;
 import com.example.qna.entity.Question;
+import com.example.qna.kafka.dto.Notification;
+import com.example.qna.kafka.service.NotificationService;
 import com.example.qna.service.QuestionService;
 import org.springframework.amqp.core.DirectExchange;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.time.Instant;
 import java.util.ArrayList;
@@ -22,6 +27,10 @@ public class QuestionController {
 
     @Autowired
     RabbitTemplate rabbitTemplate;
+    @Autowired
+    RestTemplate restTemplate;
+    @Autowired
+    NotificationService notificationService;
 
     @Autowired
     DirectExchange exchangeQnaElastic;
@@ -32,8 +41,14 @@ public class QuestionController {
         BeanUtils.copyProperties(questionDto,question);
         question.setPostedOn(Instant.now().getEpochSecond());
         questionService.save(question);
-        rabbitTemplate.convertAndSend(exchangeQnaElastic.getName(),"routing.QnaElastic",question);
-
+//        rabbitTemplate.convertAndSend(exchangeQnaElastic.getName(),"routing.QnaElastic",question);
+        List<String> followers=restTemplate.exchange("http://10.177.1.115:8082/follower/get/followers/"+question.getQuestionBy(),HttpMethod.GET,null,List.class).getBody();
+        Notification notification=new Notification();
+        notification.setTitle("New Post!");
+        notification.setMessage("Your friend added a new post.");
+        notification.setUserEmails(followers);
+        System.out.println(notification.getUserEmails().get(0));
+        notificationService.sendNotification(notification);
     }
 
     @GetMapping("/fetch/{type}/{value}")
@@ -41,7 +56,6 @@ public class QuestionController {
         List<Question> questions=questionService.findByValue(type,value);
         List<QuestionDto> result = new ArrayList<>();
         for(Question question: questions){
-
             QuestionDto questionDto = new QuestionDto();
             BeanUtils.copyProperties(question,questionDto);
             result.add(questionDto);

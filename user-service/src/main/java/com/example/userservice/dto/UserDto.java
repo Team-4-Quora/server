@@ -1,11 +1,22 @@
 package com.example.userservice.dto;
 
+import org.apache.kafka.common.protocol.types.Field;
+
 public class UserDto {
 
+    private String id;
     private String email;
     private Long points= 0L;
     private String level = "beginner";
     private String name;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
