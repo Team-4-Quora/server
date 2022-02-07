@@ -1,8 +1,9 @@
 package com.example.qna.Request;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Followers {
+public class Followers implements Serializable {
     private List<String> followers;
 
     public List<String> getFollowers() {

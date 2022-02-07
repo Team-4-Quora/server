@@ -41,12 +41,13 @@ public class QuestionController {
         BeanUtils.copyProperties(questionDto,question);
         question.setPostedOn(Instant.now().getEpochSecond());
         questionService.save(question);
-        rabbitTemplate.convertAndSend(exchangeQnaElastic.getName(),"routing.QnaElastic",question);
-        Followers followers=restTemplate.exchange("http://10.177.1.70:8081/user/fetch/followers/"+question.getQuestionBy(),HttpMethod.POST,null,Followers.class).getBody();
+//        rabbitTemplate.convertAndSend(exchangeQnaElastic.getName(),"routing.QnaElastic",question);
+        List<String> followers=restTemplate.exchange("http://10.177.1.115:8082/follower/get/followers/"+question.getQuestionBy(),HttpMethod.GET,null,List.class).getBody();
         Notification notification=new Notification();
         notification.setTitle("New Post!");
         notification.setMessage("Your friend added a new post.");
-        notification.setUserEmails(followers.getFollowers());
+        notification.setUserEmails(followers);
+        System.out.println(notification.getUserEmails().get(0));
         notificationService.sendNotification(notification);
     }
 
