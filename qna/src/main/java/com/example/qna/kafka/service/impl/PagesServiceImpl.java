@@ -4,14 +4,16 @@ import com.example.qna.kafka.dto.Pages;
 import com.example.qna.kafka.dto.Qna;
 import com.example.qna.kafka.service.PagesService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.core.KafkaTemplate;
 
 import java.sql.Timestamp;
 
+@EnableKafka
 public class PagesServiceImpl implements PagesService {
 
     @Autowired
-    private KafkaTemplate<String, Pages>
+    KafkaTemplate<String, Pages>
             kafkaTemplate;
 
     private static final String TOPIC

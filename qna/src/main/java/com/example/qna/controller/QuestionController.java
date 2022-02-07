@@ -12,9 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
-
-@RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
+@RestController
 @RequestMapping("/qna/question")
 public class QuestionController {
 

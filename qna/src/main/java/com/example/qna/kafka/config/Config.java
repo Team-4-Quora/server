@@ -21,7 +21,7 @@ import java.util.Map;
 public class Config {
 
     @Bean
-    public ProducerFactory<String, JSONObject>
+    public ProducerFactory<String, Qna>
     producerFactory()
     {
         // Create a map of a string
@@ -45,7 +45,7 @@ public class Config {
     }
 
     @Bean
-    public KafkaTemplate<String, JSONObject>
+    public KafkaTemplate<String, Qna>
     kafkaTemplate()
     {
         return new KafkaTemplate<>(
