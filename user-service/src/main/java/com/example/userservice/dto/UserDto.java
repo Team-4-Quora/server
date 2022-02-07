@@ -3,8 +3,8 @@ package com.example.userservice.dto;
 public class UserDto {
 
     private String email;
-    private Long points;
-    private String level;
+    private Long points= 0L;
+    private String level = "beginner";
     private String name;
 
     public String getName() {
