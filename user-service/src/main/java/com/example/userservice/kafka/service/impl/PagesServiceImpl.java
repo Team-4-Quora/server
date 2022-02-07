@@ -4,16 +4,18 @@ import com.example.userservice.kafka.dto.Pages;
 import com.example.userservice.kafka.service.PagesService;
 import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 
+@EnableKafka
 @Service
 public class PagesServiceImpl implements PagesService {
 
     @Autowired
-    private KafkaTemplate<String, JSONObject>
+    KafkaTemplate<String, JSONObject>
             kafkaTemplate;
 
     private static final String TOPIC

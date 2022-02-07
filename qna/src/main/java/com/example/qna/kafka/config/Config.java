@@ -21,7 +21,7 @@ import java.util.Map;
 public class Config {
 
     @Bean
-    public ProducerFactory<String, JSONObject>
+    public ProducerFactory<String, Qna>
     producerFactory()
     {
         // Create a map of a string
@@ -31,7 +31,7 @@ public class Config {
 
         config.put(
                 ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,
-                "localhost:9092");
+                "10.177.1.156:9092");
 
         config.put(
                 ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,
@@ -45,7 +45,7 @@ public class Config {
     }
 
     @Bean
-    public KafkaTemplate<String, JSONObject>
+    public KafkaTemplate<String, Qna>
     kafkaTemplate()
     {
         return new KafkaTemplate<>(

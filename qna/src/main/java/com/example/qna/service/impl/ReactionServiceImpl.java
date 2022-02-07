@@ -70,6 +70,26 @@ public class ReactionServiceImpl implements ReactionService {
         }else if(dbReacton.getLike()!=reaction.getLike()) {
             dbReacton.setLike(!dbReacton.getLike());
             reactionRepository.save(dbReacton);
+            if(type.equals("answer")){
+                Answer answer= answerRepository.findById(reaction.getAnswerId()).get();
+                Qna qna=new Qna();
+                qna.setPostId(answer.getId());
+                qna.setContentType("Text");
+                qna.setPostName(answer.getMessage());
+                qna.setReactionType(reaction.getLike()?"Like":"Dislike");
+                qna.setUserId(answer.getAnswerBy());
+                qnaService.sendMessage(qna);
+            }
+            else{
+                Question question= questionRepository.findById(reaction.getQuestionId()).get();
+                Qna qna=new Qna();
+                qna.setPostId(question.getId());
+                qna.setContentType("Text");
+                qna.setPostName(question.getText());
+                qna.setReactionType(reaction.getLike()?"Like":"Dislike");
+                qna.setUserId(question.getQuestionBy());
+                qnaService.sendMessage(qna);
+            }
         }
     }
 

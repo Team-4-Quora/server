@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
-
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/qna/comment")
 public class CommentController {
