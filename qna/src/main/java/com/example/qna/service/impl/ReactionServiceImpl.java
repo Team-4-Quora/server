@@ -75,7 +75,7 @@ public class ReactionServiceImpl implements ReactionService {
                 Answer answer= answerRepository.findById(reaction.getAnswerId()).get();
                 Qna qna=new Qna();
                 qna.setPostId(answer.getId());
-                qna.setContentType("Answer");
+                qna.setContentType("Text");
                 qna.setPostName(answer.getMessage());
                 qna.setReactionType(reaction.getLike()?"Like":"Dislike");
                 qna.setUserId(answer.getAnswerBy());
@@ -85,7 +85,7 @@ public class ReactionServiceImpl implements ReactionService {
                 Question question= questionRepository.findById(reaction.getQuestionId()).get();
                 Qna qna=new Qna();
                 qna.setPostId(question.getId());
-                qna.setContentType("Question");
+                qna.setContentType("Text");
                 qna.setPostName(question.getText());
                 qna.setReactionType(reaction.getLike()?"Like":"Dislike");
                 qna.setUserId(question.getQuestionBy());

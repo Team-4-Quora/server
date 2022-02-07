@@ -24,6 +24,11 @@ public class QnaServiceImpl implements QnaService {
         qna.setReactionTime(new Timestamp(System.currentTimeMillis()));
 
         qna.setPostType("Quora");
+        System.out.println("Content Here"+qna.getContentType());
+        if(qna.getContentType()=="Question" || qna.getContentType()=="Answer")
+        {
+            qna.setContentType("Text");
+        }
         System.out.println(qna.getPostId());
         kafkaTemplate.send(
                 TOPIC, qna);
