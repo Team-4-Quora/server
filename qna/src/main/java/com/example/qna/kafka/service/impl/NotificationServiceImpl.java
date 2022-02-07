@@ -1,5 +1,4 @@
 package com.example.qna.kafka.service.impl;
-
 import com.example.qna.kafka.dto.Notification;
 import com.example.qna.kafka.service.NotificationService;
 import net.minidev.json.JSONObject;
@@ -12,10 +11,8 @@ public class NotificationServiceImpl implements NotificationService {
     @Autowired
     private KafkaTemplate<String, JSONObject>
             kafkaTemplate;
-
     private static final String TOPIC
-            = "quoraNotifToken";
-
+            = "quoraNotiftoken";
     @Override
     public void sendNotification(Notification notification) {
         JSONObject object=new JSONObject();
@@ -26,7 +23,6 @@ public class NotificationServiceImpl implements NotificationService {
         kafkaTemplate.send(
                 TOPIC, object
         );
-
         System.out.println("Published successfully");
     }
 }

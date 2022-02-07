@@ -1,5 +1,6 @@
 package com.example.qna.kafka.config;
 
+import com.example.qna.kafka.dto.Notification;
 import net.minidev.json.JSONObject;
 import org.springframework.kafka.support.serializer.JsonSerializer;
 import org.apache.kafka.clients.producer.ProducerConfig;
@@ -49,5 +50,7 @@ public class Config {
         return new KafkaTemplate<>(
                 producerFactory());
     }
+
+
 }
 

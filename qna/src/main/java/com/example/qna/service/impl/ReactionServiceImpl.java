@@ -52,7 +52,7 @@ public class ReactionServiceImpl implements ReactionService {
                 qna.setContentType("Answer");
                 qna.setPostName(answer.getMessage());
                 qna.setReactionType(reaction.getLike()?"Like":"Dislike");
-                qna.setUserId(answer.getAnswerBy());
+                qna.setUserId(reaction.getReactionBy());
                 qnaService.sendMessage(qna);
             }else{
                     Question question= questionRepository.findById(reaction.getQuestionId()).get();
@@ -61,7 +61,7 @@ public class ReactionServiceImpl implements ReactionService {
                     qna.setContentType("Question");
                     qna.setPostName(question.getText());
                     qna.setReactionType(reaction.getLike()?"Like":"Dislike");
-                    qna.setUserId(question.getQuestionBy());
+                    qna.setUserId(reaction.getReactionBy());
                     qnaService.sendMessage(qna);
             }
         }

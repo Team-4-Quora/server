@@ -1,13 +1,14 @@
 package com.example.qna.kafka.dto;
+import com.sun.xml.internal.ws.developer.Serialization;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Notification {
+public class Notification implements Serializable {
     private String title;
     private String message;
     private List<String> userEmails;
     private String appId="3";
-
     public String getTitle() {
         return title;
     }
