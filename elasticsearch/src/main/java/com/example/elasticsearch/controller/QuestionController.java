@@ -45,6 +45,8 @@ public class QuestionController {
         try {
             List<Question> questions = questionService.searchQues(query);
 
+            //todo : instead of JSONObject .. use Question DTO
+
             List<QuestionDto> questionDtos = new ArrayList<>();
 
             for(Question question:questions){
@@ -63,7 +65,7 @@ public class QuestionController {
         }catch (Exception e)
         {
             return null;
-        }
+       }
 
     }
 

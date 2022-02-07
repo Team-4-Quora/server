@@ -16,7 +16,6 @@ public class Organization {
     private String description;
 
 
-
     public String getId() {
         return id;
     }

@@ -39,6 +39,8 @@ public class AnswerController {
         try {
             List<Organisation> org = orgService.searchOrg(query);
 
+            //todo:get the set of questions based on Answers and respond back List<QuestionDTO>
+
             JSONObject data = new JSONObject();
             data.put("Organisation", org);
             return  prepareReturnObject(200, "Search data", data);
