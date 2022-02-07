@@ -41,7 +41,7 @@ public class QuestionController {
         BeanUtils.copyProperties(questionDto,question);
         question.setPostedOn(Instant.now().getEpochSecond());
         questionService.save(question);
-//        rabbitTemplate.convertAndSend(exchangeQnaElastic.getName(),"routing.QnaElastic",question);
+        rabbitTemplate.convertAndSend(exchangeQnaElastic.getName(),"routing.QnaElastic",question);
         List<String> followers=restTemplate.exchange("http://10.177.1.115:8082/follower/get/followers/"+question.getQuestionBy(),HttpMethod.GET,null,List.class).getBody();
         Notification notification=new Notification();
         notification.setTitle("New Post!");
