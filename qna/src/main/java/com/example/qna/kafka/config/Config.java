@@ -1,7 +1,5 @@
 package com.example.qna.kafka.config;
 
-
-import com.example.qna.kafka.dto.Qna;
 import net.minidev.json.JSONObject;
 import org.springframework.kafka.support.serializer.JsonSerializer;
 import org.apache.kafka.clients.producer.ProducerConfig;
@@ -21,7 +19,7 @@ import java.util.Map;
 public class Config {
 
     @Bean
-    public ProducerFactory<String, Qna>
+    public ProducerFactory<String, JSONObject>
     producerFactory()
     {
         // Create a map of a string
@@ -45,7 +43,7 @@ public class Config {
     }
 
     @Bean
-    public KafkaTemplate<String, Qna>
+    public KafkaTemplate<String, JSONObject>
     kafkaTemplate()
     {
         return new KafkaTemplate<>(
