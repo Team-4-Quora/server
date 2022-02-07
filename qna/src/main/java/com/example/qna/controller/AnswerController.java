@@ -21,10 +21,10 @@ public class AnswerController {
     private AnswerService answerService;
 
     @Autowired
-    RabbitTemplate rabbitTemplate;
+    private RabbitTemplate rabbitTemplate;
 
     @Autowired
-    DirectExchange exchangeQnaElasticTwo;
+    private DirectExchange exchangeQnaElasticTwo;
 
     @PostMapping("/add")
     void saveans(@RequestBody AnswerDto answerDto){
